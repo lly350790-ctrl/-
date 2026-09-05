@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="theme-color" content="#ff8a00">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon.svg">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مطعم زيون أبو الكص</title>
+<style>
+*{box-sizing:border-box}
+:root{--gold:#f5b51b;--gold2:#ffcf45;--bg:#070708;--card:#141416;--line:#3a321e;--muted:#aaa}
+body{margin:0;background:radial-gradient(circle at 50% -10%,#2a210b 0,#0a0a0b 35%,#050506 100%);color:#fff;font-family:Tahoma,Arial,sans-serif;padding-bottom:80px}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 45%,#f5b51b08 50%,transparent 55%);z-index:-1}
+header{position:relative;padding:42px 18px 34px;text-align:center;overflow:hidden;background:linear-gradient(180deg,#000b,#090909f2),url("https://images.unsplash.com/photo-1529006557810-274b9b2fc783?q=80&w=1400") center/cover;border-bottom:1px solid #4b3b13}
+header:after{content:"";position:absolute;inset:auto 15% 0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.logoMark{width:82px;height:82px;margin:0 auto 12px;border:2px solid var(--gold);border-radius:24px;display:grid;place-items:center;font-size:38px;background:#090909cc;box-shadow:0 0 30px #f5b51b20}
+h1{color:var(--gold);font-size:clamp(32px,8vw,58px);margin:0 0 8px;text-shadow:0 3px 20px #000}.sub{color:#eee;font-size:17px}.tag{display:inline-block;margin-top:15px;padding:7px 16px;border:1px solid #8b691c;border-radius:30px;color:#f7d56b;background:#151108}
+nav{position:sticky;top:0;z-index:20;background:#0d0d0eea;backdrop-filter:blur(16px);padding:11px 15px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #2b2619}
+.logo{color:var(--gold);font-weight:900;font-size:18px}.cart{background:linear-gradient(135deg,var(--gold2),var(--gold));border:0;border-radius:14px;padding:11px 15px;font-weight:900;color:#171208;box-shadow:0 6px 20px #f5b51b25}
+main{max-width:1100px;margin:auto;padding:20px 16px}h2{color:var(--gold);margin:25px 0 13px}
+.search{width:100%;padding:15px 17px;border-radius:15px;border:1px solid #42381f;background:#121214;color:white;font-size:16px;outline:none;box-shadow:inset 0 0 20px #0005}.search:focus{border-color:var(--gold)}
+.cats{display:flex;gap:9px;overflow:auto;padding:3px 1px 10px;scrollbar-width:none}.cat{white-space:nowrap;background:#171719;color:#eee;border:1px solid #35302a;padding:11px 16px;border-radius:25px;font-weight:bold}.cat.active{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#16120a;border-color:var(--gold)}
+
+.menu-section{margin:28px 0 36px;scroll-margin-top:90px}
+.section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px;padding:12px 14px;border-right:4px solid var(--gold);background:linear-gradient(90deg,#17130a,#101012);border-radius:14px;border-top:1px solid #30291b;border-bottom:1px solid #30291b}
+.section-title h2{margin:0;color:var(--gold);font-size:22px}
+.section-title span{color:#aaa;font-size:12px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.card{position:relative;background:linear-gradient(145deg,#1a1a1c,#101012);border:1px solid #312b20;border-radius:20px;padding:18px;overflow:hidden;box-shadow:0 10px 30px #0007;transition:.2s}
+.card:hover{transform:translateY(-3px);border-color:#80621b}.card:before{content:"";position:absolute;top:-55px;left:-55px;width:130px;height:130px;background:#f5b51b12;border-radius:50%}
+.card h3{margin:0 0 9px;position:relative}.desc{color:#aaa;font-size:13px;min-height:38px;line-height:1.6;position:relative}.price{color:#39d487;font-size:20px;font-weight:900;margin:13px 0;position:relative}.add{width:100%;padding:12px;border:1px solid #5a481b;border-radius:12px;background:#242226;color:#fff;font-weight:bold;position:relative}.add:hover{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#151108}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.box{background:#121214;padding:17px;border-radius:16px;border:1px solid #2e2a22}.box b{display:block;color:var(--gold);margin-bottom:7px}
+.drink{margin-top:18px;padding:18px;border:1px solid #4b3712;border-radius:18px;background:linear-gradient(135deg,#17120a,#101012);display:flex;justify-content:space-between;align-items:center}.drink strong{color:#e9bd35}.drink span{color:#39d487;font-weight:900}
+footer{text-align:center;color:#777;padding:30px}
+.overlay{display:none;position:fixed;inset:0;background:#000b;z-index:29}.drawer{position:fixed;z-index:30;right:0;top:0;width:min(430px,94vw);height:100%;background:#0e0e10;padding:20px;transform:translateX(100%);transition:.25s;overflow:auto;border-left:1px solid #4b3b16}.open{display:block}.drawer.open{transform:translateX(0)}
+.drawerhead{display:flex;justify-content:space-between}.close{background:#29292e;color:white;border:0;padding:9px;border-radius:9px}.item{display:flex;justify-content:space-between;border-bottom:1px solid #29292e;padding:14px 0}.qty button{background:#29292e;color:white;border:0;border-radius:7px;width:28px;height:28px}.total{color:#39d487;font-size:21px;font-weight:bold;padding:18px 0}.wa{display:block;text-align:center;text-decoration:none;background:linear-gradient(135deg,#25d366,#19b955);color:#06150d;padding:14px;border-radius:12px;font-weight:bold}
+@media(max-width:520px){main{padding:16px 12px}.grid{grid-template-columns:1fr 1fr;gap:10px}.card{padding:14px;border-radius:16px}.card h3{font-size:15px}.price{font-size:17px}.add{padding:10px;font-size:13px}.logo{font-size:16px}}
+
+.qr-section{margin:35px 0 10px}
+.qr-card{display:flex;align-items:center;justify-content:space-between;gap:22px;padding:20px;border:1px solid #5b4515;border-radius:20px;background:linear-gradient(135deg,#18130a,#111114);box-shadow:0 12px 35px #0008}
+.qr-card h2{margin:0 0 8px}.qr-card p{margin:0;color:#aaa;line-height:1.8}
+.qr-card img{width:150px;height:150px;padding:8px;background:#fff;border-radius:14px}
+@media(max-width:520px){.qr-card{flex-direction:column;text-align:center}.qr-card img{width:175px;height:175px}}
+
+.qr-section{margin:40px 0 18px}
+.qr-card{position:relative;overflow:hidden;text-align:center;padding:28px 20px;border:1px solid #7a5a17;border-radius:26px;background:radial-gradient(circle at 50% 0,#3a2b0d,#15130f 45%,#0d0d0f 100%);box-shadow:0 18px 50px #0009}
+.qr-card:before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:#f5b51b10;top:-130px;right:-80px}
+.qr-badge{display:inline-block;padding:7px 15px;border:1px solid #6e5217;border-radius:30px;color:#ffd65b;background:#1c1609;font-weight:900;margin-bottom:10px}
+.qr-card h2{margin:6px 0;color:#f5b51b}
+.qr-card p{color:#bbb;line-height:1.8;margin:0 auto 18px;max-width:430px}
+.qr-img{position:relative;width:230px;height:230px;padding:11px;background:#fff;border-radius:20px;box-shadow:0 8px 35px #000b}
+.qr-hint{margin-top:15px;color:#39d487;font-weight:900}
+
+.qr-section{margin:40px 0 18px}
+.qr-card{position:relative;overflow:hidden;text-align:center;padding:28px 20px;border:1px solid #7a5a17;border-radius:26px;background:radial-gradient(circle at 50% 0,#3a2b0d,#15130f 45%,#0d0d0f 100%);box-shadow:0 18px 50px #0009}
+.qr-badge{display:inline-block;padding:7px 15px;border:1px solid #6e5217;border-radius:30px;color:#ffd65b;background:#1c1609;font-weight:900;margin-bottom:10px}
+.qr-card h2{margin:6px 0;color:#f5b51b}
+.qr-card p{color:#bbb;line-height:1.8;margin:0 auto 18px;max-width:520px}
+.qr-img{position:relative;width:230px;height:230px;padding:11px;background:#fff;border-radius:20px;box-shadow:0 8px 35px #000b}
+.qr-hint{margin-top:15px;color:#39d487;font-weight:900}
+@media(max-width:520px){.qr-img{width:205px;height:205px}}
+</style>
+</head>
+<body>
+<nav><div class="logo">🔥 زيون أبو الكص</div><button class="cart" onclick="openCart()">🛒 السلة <span id="count">0</span></button></nav>
+<header>
+<div class="logoMark">🔥</div>
+<h1>مطعم زيون أبو الكص</h1>
+<div class="sub">أطيب شاورما وكص عراقي على أصوله 🥙</div>
+<div class="tag">تجربة استثنائية • بأفضل الأسعار</div>
+</header>
+<main>
+<h2>🍽️ المنيو</h2>
+<div class="cats">
+<button class="cat active" onclick="filter('all',this)">🍽️ الكل</button><button class="cat" onclick="filter('shawarma',this)">الشاورما</button><button class="cat" onclick="filter('kass',this)">التشريب والكص</button><button class="cat" onclick="filter('burger',this)">البركر</button><button class="cat" onclick="filter('saj',this)">الصاج</button><button class="cat" onclick="filter('appetizer',this)">المقبلات</button><button class="cat" onclick="filter('drinks',this)">المشروبات</button>
+</div>
+<input id="search" class="search" placeholder="🔎 ابحث عن وجبة..." oninput="render()">
+<div id="products"></div>
+<h2>📞 تواصل معنا</h2>
+<div class="info">
+<div class="box"><b>📍 الموقع</b>بصرة - جبيلة مقابل حسينية أولاد عامر</div>
+<div class="box"><b>📞 الهاتف</b>07739030003</div>
+<div class="box"><b>📱 واتساب</b>إرسال الطلب مباشرة</div>
+<div class="box"><b>🕒 الدوام</b>يومياً</div>
+</div>
+</main>
+
+
+
+
+
+<section id="qr-section" class="qr-section">
+  <div class="qr-card">
+    <div class="qr-badge">🔥 زيون أبو الكص</div>
+    <h2>📲 امسح الباركود وادخل للموقع</h2>
+    <p>هذا الباركود يفتح موقع مطعم زيون أبو الكص مباشرة. بعد رفع الموقع على رابطك النهائي، سيأخذ الزبون إلى نفس صفحة الموقع.</p>
+    <img id="siteQr" class="qr-img" alt="باركود الدخول إلى موقع مطعم زيون أبو الكص">
+    <div class="qr-hint">الموقع • المنيو • الطلب • التوصيل</div>
+  </div>
+</section>
+<footer>© 2026 مطعم زيون أبو الكص</footer>
+
+<div id="overlay" class="overlay" onclick="closeCart()"></div>
+<aside id="drawer" class="drawer">
+<div class="drawerhead"><h2>🛒 سلة الطلب</h2><button class="close" onclick="closeCart()">إغلاق</button></div>
+<div id="items"></div><div class="total">المجموع: <span id="total">0</span> د.ع</div>
+<a id="wa" class="wa" target="_blank">📲 إرسال الطلب عبر واتساب</a>
+</aside>
+
+<script>
+const products=[
+["ساندويش شاورما لحم","shawarma",4000],["ساندويش شاورما دجاج","shawarma",3000],
+["ساندويش بركر كلاسيك","burger",3000],["وجبه بركر مقطع","burger",5000],
+["نفر تشريب كص","kass",16000],["نص نفر تشريب كص","kass",8000],["منسف تشريب","kass",25000],
+["كيلو شاورما الحم","shawarma",50000],["نصف كيلو شاورما لحم","shawarma",25000],["ربع كيلو شاورما لحم","shawarma",14000],
+["كيلو شاورما دجاج","shawarma",35000],["نصف كيلو شاورما دجاج","shawarma",18000],["ربع كيلو شاورما الدجاج","shawarma",12000],
+["نفر شاورما لحم","shawarma",16000],["نصف نفر شاورما لحم","shawarma",8000],["نفر شاورما الدجاج","shawarma",12000],
+["نصف نفر شاورما الدجاج","shawarma",6000],["وجبة صاج لحم","saj",6000],["وجبة صاج دجاج","saj",5000],["مقبلات صغير","appetizer",3000],["مقبلات وسط","appetizer",5000],["مقبلات كبير","appetizer",7000],["كوكا كولا","drinks",500],["البن","drinks",1000]
+];
+let selected="all",cart={};
+const categoryNames={
+  shawarma:"🥙 الشاورما",
+  kass:"🍖 التشريب والكص",
+  burger:"🍔 البركر",
+  saj:"🌯 الصاج",
+  appetizer:"🥗 المقبلات",
+  drinks:"🥤 المشروبات"
+};
+function card(p){
+  return `<div class="card"><h3>${p[0]}</h3><div class="desc">وجبة مميزة من مطعم زيون أبو الكص</div><div class="price">${p[2].toLocaleString("ar-IQ")} د.ع</div><button class="add" onclick="add('${p[0]}')">+ أضف للسلة</button></div>`;
+}
+function render(){
+  let q=document.getElementById("search").value.toLowerCase().trim();
+  let root=document.getElementById("products");
+  let cats=selected=="all"?Object.keys(categoryNames):[selected];
+  root.innerHTML=cats.map(c=>{
+    let list=products.filter(p=>p[1]==c && p[0].toLowerCase().includes(q));
+    if(!list.length)return "";
+    return `<section class="menu-section" id="section-${c}">
+      <div class="section-title"><h2>${categoryNames[c]}</h2><span>${list.length} أصناف</span></div>
+      <div class="grid">${list.map(card).join("")}</div>
+    </section>`;
+  }).join("");
+}
+function filter(c,b){
+  selected=c;
+  document.querySelectorAll(".cat").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active");
+  render();
+}
+function add(n){cart[n]=(cart[n]||0)+1;draw();openCart()}
+function change(n,x){cart[n]+=x;if(cart[n]<=0)delete cart[n];draw()}
+function draw(){let names=Object.keys(cart),sum=0,count=0;document.getElementById("items").innerHTML=names.length?names.map(n=>{let p=products.find(x=>x[0]==n),q=cart[n];sum+=p[2]*q;count+=q;return `<div class="item"><span>${n}<br><small>${p[2].toLocaleString("ar-IQ")} د.ع</small></span><span class="qty"><button onclick="change('${n}',-1)">−</button> ${q} <button onclick="change('${n}',1)">+</button></span></div>`}).join(""):'<p style="text-align:center;color:#777;padding:30px">السلة فارغة 🍽️</p>';document.getElementById("total").textContent=sum.toLocaleString("ar-IQ");document.getElementById("count").textContent=count;let t="طلب من مطعم زيون أبو الكص%0A%0A";names.forEach(n=>t+=`• ${n} × ${cart[n]}%0A`);t+=`%0Aالمجموع: ${sum.toLocaleString("ar-IQ")} د.ع`;document.getElementById("wa").href="https://wa.me/9647739030003?text="+t}
+function openCart(){drawer.classList.add("open");overlay.classList.add("open");draw()}function closeCart(){drawer.classList.remove("open");overlay.classList.remove("open")}
+render();draw();
+if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js"));}
+
+// QR code opens the current website URL.
+(function(){
+  const qr = document.getElementById("siteQr");
+  if(!qr) return;
+  const url = window.location.href.split("#")[0];
+  qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=500x500&margin=12&data=" + encodeURIComponent(url);
+})();
+</script>
+</body>
+</html>
